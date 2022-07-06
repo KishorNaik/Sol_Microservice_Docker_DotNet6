@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Communication]
+(
+	[Id] NUMERIC NOT NULL IDENTITY(1,1) PRIMARY KEY, 
+    [CommunicationID] UNIQUEIDENTIFIER NULL, 
+    [MobileNo] VARCHAR(10) NULL, 
+    [EmailID] VARCHAR(50) NULL, 
+    [CustomerID] UNIQUEIDENTIFIER NULL,
+
+)

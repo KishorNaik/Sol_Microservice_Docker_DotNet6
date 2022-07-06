@@ -1,0 +1,21 @@
+Step 1: 
+Create a Blank solution.
+
+Step 2:
+Create a Microserice Web Api Project Solutions with Docker enable features.
+
+Step 3:
+Add Docker Compose
+
+	Right Click on solution => Click on Add,
+	Select Container Orchestrator Support
+	Select Docker Compose
+	Select Target OS as Linux
+
+Step 4:
+Run Docker Compose (Execute or Debug Application by using docker compose)
+	Select docker-compose solution, Right click on solution,
+	Select Properties
+	In general Tag , Select Service name which you want to execute or Debug
+
+

@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  gateway.mobile:
+    image: ${DOCKER_REGISTRY-}gatewaymobile
+    build:
+      context: .
+      dockerfile: Gateway.Mobile/Dockerfile
+
+  gateway.web:
+    image: ${DOCKER_REGISTRY-}gatewayweb
+    build:
+      context: .
+      dockerfile: Gateway.Web/Dockerfile
+
+
+  customer.api:
+    image: ${DOCKER_REGISTRY-}customerapi
+    build:
+      context: .
+      dockerfile: Customer.API/Dockerfile
+

@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Login]
+(
+	[Id] NUMERIC NOT NULL IDENTITY(1,1) PRIMARY KEY, 
+    [LoginID] UNIQUEIDENTIFIER NULL, 
+    [EmailID] VARCHAR(50) NULL, 
+    [Salt] VARCHAR(MAX) NULL,
+    [Hash] Varchar(MAX) NULL,
+    [CustomerID] UNIQUEIDENTIFIER NULL,
+
+)

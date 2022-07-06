@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e9f9c051-3387-47ed-ad69-cdd097de1687</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Applications\Features\Query\" />
+    <Folder Include="DTO\Response\" />
+    <Folder Include="Infrastructures\DatabaseContext\" />
+    <Folder Include="Infrastructures\DataService\Query\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.ASP.Extensions\Framework.ASP.Extensions.csproj" />
+    <ProjectReference Include="..\Framework.ASP.Middlewares\Framework.ASP.Middlewares.csproj" />
+    <ProjectReference Include="..\Framework.Base\Framework.Base.csproj" />
+    <ProjectReference Include="..\Framework.Model\Framework.Model.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1dcbb2e0-2045-4297-8d29-30c6f7b80e60" ChangeDateTime="06/20/2022 02:49:10">
+    <Property Name="ElementName" Value="[dbo].[Customers].[CustomerID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Customers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c54fccbb-8e53-4f31-b46a-c4663ad72b4c" ChangeDateTime="06/20/2022 02:49:21">
+    <Property Name="ElementName" Value="[dbo].[Customers].[FullName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Customers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomerID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c99fec03-3f6c-41e9-b505-680e04720c91" ChangeDateTime="06/20/2022 02:58:56">
+    <Property Name="ElementName" Value="[dbo].[Address].[ApartmentName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Apartment" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aa0ab443-fef1-4c9a-b04f-d7bc731293e1" ChangeDateTime="06/20/2022 02:59:03">
+    <Property Name="ElementName" Value="[dbo].[Address].[StreetName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Street" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="162e6aa1-1382-473f-85f7-6493a5f6de55" ChangeDateTime="07/02/2022 12:09:07">
+    <Property Name="ElementName" Value="[dbo].[Address].[IsActive]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsDeliveryAddress" />
+  </Operation>
+</Operations>
