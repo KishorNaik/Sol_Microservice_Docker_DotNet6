@@ -1,8 +1,10 @@
-﻿using Customer.API.DTO.Request;
+﻿using Customer.API.Applications.Features.Query;
+using Customer.API.DTO.Request;
 using Customer.API.Infrastructures.DatabaseContext;
 
 //using Customer.API.Infrastructures.DatabaseContext;
 using Customer.API.Infrastructures.DataService.Command;
+using Customer.API.Infrastructures.DataService.Query;
 
 namespace Customer.API.Business.Mapper
 {
@@ -36,6 +38,16 @@ namespace Customer.API.Business.Mapper
 
             base.CreateMap<AddCustomerAddressRequestDTO, AddCustomerAddressCommand>();
             base.CreateMap<AddCustomerAddressCommand, AddCustomerAddressDataServiceCommand>();
+
+            base.CreateMap<CustomerAuthDataServiceQuery, Login>()
+                .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailID));
+
+            base.CreateMap<CustomerAuthQuery, CustomerAuthDataServiceQuery>()
+                .ForMember((dest) => dest.EmailID, (opt) => opt.MapFrom((src) => src.EmailID));
+
+            base.CreateMap<CustomerAuthRequestDTO, CustomerAuthQuery>()
+                .ForMember((dest) => dest.EmailID, (opt) => opt.MapFrom((src) => src.EmailID))
+                .ForMember((dest) => dest.Password, (opt) => opt.MapFrom((src) => src.Password));
         }
     }
 }

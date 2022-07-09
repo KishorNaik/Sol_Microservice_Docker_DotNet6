@@ -1,4 +1,6 @@
 ﻿using Customer.API.Applications.Features.Command;
+using Customer.API.Applications.Features.Query;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -19,6 +21,7 @@ namespace Customer.API.Controllers
             this.mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpPost("create")]
         public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequetsDTO createCustomerRequetsDTO)
         {
@@ -28,11 +31,21 @@ namespace Customer.API.Controllers
         }
 
         [HttpPost("add-address")]
+        [Authorize]
         public async Task<IActionResult> AddAddress([FromBody] AddCustomerAddressRequestDTO addCustomerAddressRequestDTO)
         {
             Results<bool> result = await this.mediator.Send<Results<bool>>(this.mapper.Map<AddCustomerAddressCommand>(addCustomerAddressRequestDTO));
 
             return base.StatusCode((int)result.StatusCode!, result);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] CustomerAuthRequestDTO customerAuthRequestDTO)
+        {
+            Results<CustomerAuthResponseDTO> results = await this.mediator.Send<Results<CustomerAuthResponseDTO>>(this.mapper.Map<CustomerAuthQuery>(customerAuthRequestDTO));
+
+            return base.StatusCode((int)results.StatusCode!, results);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Customer.API.Infrastructures.DatabaseContext
         public string? City { get; set; }
         public string? State { get; set; }
         public string? Pincode { get; set; }
-        public bool? IsActive { get; set; }
+        public bool? IsDeliveryAddress { get; set; }
         public Guid? CustomerId { get; set; }
     }
 }

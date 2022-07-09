@@ -58,6 +58,10 @@ namespace Customer.API.Infrastructures.DataService.Command
                 await transaction.RollbackAsync(cancellationToken);
                 throw;
             }
+            finally
+            {
+                await this.customersContext.DisposeAsync();
+            }
         }
     }
 }

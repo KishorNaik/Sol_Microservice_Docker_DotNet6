@@ -18,4 +18,8 @@ Run Docker Compose (Execute or Debug Application by using docker compose)
 	Select Properties
 	In general Tag , Select Service name which you want to execute or Debug
 
+Scaffold Command
+
+Scaffold-DbContext -f "Data Source=DESKTOP-JM6N8TL;Initial Catalog=Customers;Integrated Security=True;Connect Timeout=60;Encrypt=False;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Infrastructure/DatabaseContext
+
 

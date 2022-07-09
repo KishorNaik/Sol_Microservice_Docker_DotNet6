@@ -18,7 +18,7 @@ namespace Customer.API.Infrastructures.DatabaseContext
 
         public virtual DbSet<Address> Addresses { get; set; } = null!;
         public virtual DbSet<Communication> Communications { get; set; } = null!;
-        public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Customers> Customers { get; set; } = null!;
         public virtual DbSet<Login> Logins { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,7 +26,7 @@ namespace Customer.API.Infrastructures.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Data Source=DESKTOP-JM6N8TL;Initial Catalog=Customers;User ID=sa;Password=Shreemaster011;Connect Timeout=60;Encrypt=False;");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-JM6N8TL;Initial Catalog=Customers;Integrated Security=True;Connect Timeout=60;Encrypt=False;");
             }
         }
 
@@ -75,6 +75,15 @@ namespace Customer.API.Infrastructures.DatabaseContext
             {
                 entity.ToTable("Communication");
 
+                entity.HasIndex(e => e.CustomerId, "UX_CustomerID_Communication")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.EmailId, "UX_EmailId_Communication")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.MobileNo, "UX_MobileNo_Communication")
+                    .IsUnique();
+
                 entity.Property(e => e.Id)
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
@@ -93,7 +102,7 @@ namespace Customer.API.Infrastructures.DatabaseContext
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Customer>(entity =>
+            modelBuilder.Entity<Customers>(entity =>
             {
                 entity.Property(e => e.Id)
                     .HasColumnType("numeric(18, 0)")
@@ -109,6 +118,8 @@ namespace Customer.API.Infrastructures.DatabaseContext
             modelBuilder.Entity<Login>(entity =>
             {
                 entity.ToTable("Login");
+
+                entity.HasIndex(e => e.CustomerId, "UX_CustomerID_Login");
 
                 entity.Property(e => e.Id)
                     .HasColumnType("numeric(18, 0)")
@@ -128,9 +139,9 @@ namespace Customer.API.Infrastructures.DatabaseContext
                 entity.Property(e => e.Salt).IsUnicode(false);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            //OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        //private partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

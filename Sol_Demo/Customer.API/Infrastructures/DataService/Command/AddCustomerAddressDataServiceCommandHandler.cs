@@ -33,6 +33,10 @@ namespace Customer.API.Infrastructures.DataService.Command
             {
                 throw;
             }
+            finally
+            {
+                await this.customersContext.DisposeAsync();
+            }
         }
     }
 }

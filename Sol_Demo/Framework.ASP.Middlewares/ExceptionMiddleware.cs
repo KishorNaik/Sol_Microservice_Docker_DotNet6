@@ -23,11 +23,11 @@ namespace Framework.ASP.Middlewares
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
                     if (contextFeature != null)
                     {
-                        await context.Response.WriteAsync(new
+                        await context.Response.WriteAsJsonAsync(new
                         {
                             StatusCode = context.Response.StatusCode,
-                            ErrorMessage = contextFeature.Error.Message
-                        }.ToString());
+                            Message = contextFeature.Error.Message
+                        });
                     }
                 });
             });
