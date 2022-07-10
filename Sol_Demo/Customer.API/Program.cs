@@ -13,7 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen((opt) =>
+{
+    opt.AddJwtInSwagger();
+});
 
 builder.Services.AddJson(true, true);
 builder.Services.AddGzipResponseCompression(System.IO.Compression.CompressionLevel.Fastest);
