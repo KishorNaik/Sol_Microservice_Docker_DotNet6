@@ -28,7 +28,7 @@ namespace Customer.API.UnitTest
             FullName = "Kishor Naik",
             EmailId = "kishor@gmail.com",
             Password = "pass@123",
-            MobileNo = "9167791118"
+            MobileNo = "1111111111"
         };
 
         [Fact]

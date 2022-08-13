@@ -57,4 +57,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseW3CLogging();
+
 app.Run();
