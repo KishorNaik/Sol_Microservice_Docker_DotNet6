@@ -2,7 +2,7 @@
 
 namespace Customer.API.Business.Validation
 {
-    public class CreateCustomerRequestDTOValidationRule : AbstractValidator<CreateCustomerRequetsDTO>
+    public class CreateCustomerRequestDTOValidationRule : AbstractValidator<RegisterCustomerRequetsDTO>
     {
         public CreateCustomerRequestDTOValidationRule()
         {

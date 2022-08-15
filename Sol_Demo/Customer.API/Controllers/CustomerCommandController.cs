@@ -23,7 +23,7 @@ namespace Customer.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("create")]
-        public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequetsDTO createCustomerRequetsDTO)
+        public async Task<IActionResult> CreateCustomer([FromBody] RegisterCustomerRequetsDTO createCustomerRequetsDTO)
         {
             Results<bool> result = await this.mediator.Send<Results<bool>>(this.mapper.Map<RegisterCustomerCommand>(createCustomerRequetsDTO));
 

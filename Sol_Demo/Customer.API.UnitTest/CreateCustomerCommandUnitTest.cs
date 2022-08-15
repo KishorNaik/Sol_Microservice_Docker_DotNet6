@@ -39,12 +39,12 @@ namespace Customer.API.UnitTest
                 .ReturnsAsync((salt: "6lM8YGNBzM2bE6UJgdmWZC5bBtk76SBEZvycl63UWzc=", hash: "+ubvJ+FqXWrKYh0Ne0/pk1iXiPsJK0wiUWnPbgjqVnc="));
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
-                .Returns(new CreateCustomerDataServiceCommand());
+                .Setup((e) => e.Map<RegisterCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
+                .Returns(new RegisterCustomerDataServiceCommand());
 
             mediatorMock
-                .Setup((e) => e.Send<bool>(It.IsAny<CreateCustomerDataServiceCommand>(), new CancellationToken()))
-                .ReturnsAsync(true);
+                .Setup((e) => e.Send<Guid?>(It.IsAny<RegisterCustomerDataServiceCommand>(), new CancellationToken()))
+                .ReturnsAsync(Guid.NewGuid());
 
             Results<bool> results = await createCustomerCommandHandler.Handle(Data, new CancellationToken());
 
@@ -59,12 +59,12 @@ namespace Customer.API.UnitTest
                .Throws<Exception>();
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
-                .Returns(new CreateCustomerDataServiceCommand());
+                .Setup((e) => e.Map<RegisterCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
+                .Returns(new RegisterCustomerDataServiceCommand());
 
             mediatorMock
-                .Setup((e) => e.Send<bool>(It.IsAny<CreateCustomerDataServiceCommand>(), new CancellationToken()))
-                .ReturnsAsync(true);
+                .Setup((e) => e.Send<Guid?>(It.IsAny<RegisterCustomerDataServiceCommand>(), new CancellationToken()))
+                .ReturnsAsync(Guid.NewGuid());
 
             Results<bool> results;
 
@@ -83,11 +83,11 @@ namespace Customer.API.UnitTest
                .ReturnsAsync((salt: "6lM8YGNBzM2bE6UJgdmWZC5bBtk76SBEZvycl63UWzc=", hash: "+ubvJ+FqXWrKYh0Ne0/pk1iXiPsJK0wiUWnPbgjqVnc="));
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
-                .Returns(new CreateCustomerDataServiceCommand());
+                .Setup((e) => e.Map<RegisterCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
+                .Returns(new RegisterCustomerDataServiceCommand());
 
             mediatorMock
-                .Setup((e) => e.Send<bool>(It.IsAny<CreateCustomerDataServiceCommand>(), new CancellationToken()))
+                .Setup((e) => e.Send<Guid?>(It.IsAny<RegisterCustomerDataServiceCommand>(), new CancellationToken()))
                 .Throws<Exception>();
 
             Results<bool> results;

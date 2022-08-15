@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Wallets]
+(
+	[WalletId] NUMERIC(18,0) NOT NULL IDENTITY(1,1) PRIMARY KEY, 
+    [WalletIdentifier] UNIQUEIDENTIFIER NOT NULL UNIQUE, 
+    [Balance] MONEY NOT NULL, 
+    [CreatedDate] DATETIME NOT NULL DEFAULT GetDate(),
+    [ModifedDate] DATETIME NOT NULL DEFAULT GetDate(),
+    [CustomerIdentifier] UNIQUEIDENTIFIER NOT NULL UNIQUE
+)

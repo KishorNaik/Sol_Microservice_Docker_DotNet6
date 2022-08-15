@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[Transaction]
+(
+	TransactionID Numeric(18,0) IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	TransactionIdentifer UNIQUEIDENTIFIER NOT NULL UNIQUE,
+	Type VARCHAR(50) NOT NULL,
+	Amount MONEY NOT NULL,
+	Status BIT NOT NULL,
+	WalletIdentifier UNIQUEIDENTIFIER NOT NULL,
+	[CustomerIdentifier] UNIQUEIDENTIFIER NOT NULL,
+	OrderIdentifier UNIQUEIDENTIFIER NOT NULL,
+	[CreatedDate] DATETIME NOT NULL DEFAULT GetDate(),
+    [ModifedDate] DATETIME NOT NULL DEFAULT GetDate(),
+)

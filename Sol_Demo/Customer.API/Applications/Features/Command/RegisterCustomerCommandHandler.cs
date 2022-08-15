@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace Customer.API.Applications.Features.Command
 {
-    public class RegisterCustomerCommand : CreateCustomerRequetsDTO, IRequest<Results<bool>>
+    public class RegisterCustomerCommand : RegisterCustomerRequetsDTO, IRequest<Results<bool>>
     {
     }
 
@@ -23,20 +23,34 @@ namespace Customer.API.Applications.Features.Command
 
         async Task<Results<bool>> IRequestHandler<RegisterCustomerCommand, Results<bool>>.Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
         {
+            bool? flag = false;
             try
             {
                 (string? salt, string? hash) = await this.hashPasswordRule.CreatePasswordAsync(request.Password)!;
 
-                CreateCustomerDataServiceCommand createCustomerDataServiceCommand = this.mapper.Map<CreateCustomerDataServiceCommand>(request);
+                RegisterCustomerDataServiceCommand createCustomerDataServiceCommand = this.mapper.Map<RegisterCustomerDataServiceCommand>(request);
                 createCustomerDataServiceCommand.Hash = hash;
                 createCustomerDataServiceCommand.Salt = salt;
 
-                var flag = await this.mediator.Send<bool>(createCustomerDataServiceCommand);
+                var customerIdentifer = await this.mediator.Send<Guid?>(createCustomerDataServiceCommand);
+
+                if (customerIdentifer != null)
+                {
+                    await this.mediator.Publish<CreateWalletIntegrationProducerEvent>(new CreateWalletIntegrationProducerEvent()
+                    {
+                        CustomerIdentifier = customerIdentifer
+                    });
+                    flag = true;
+                }
+                else
+                {
+                    flag = false;
+                }
 
                 return new Results<bool>
                 {
                     Success = true,
-                    Value = flag,
+                    Value = Convert.ToBoolean(flag),
                     StatusCode = 200
                 };
             }

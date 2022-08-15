@@ -12,26 +12,26 @@ namespace Customer.API.Business.Mapper
     {
         public CustomerMapperProfile()
         {
-            base.CreateMap<CreateCustomerRequetsDTO, RegisterCustomerCommand>()
+            base.CreateMap<RegisterCustomerRequetsDTO, RegisterCustomerCommand>()
                    .ForMember((dest) => dest.FullName, (opt) => opt.MapFrom((src) => src.FullName))
                    .ForMember((dest) => dest.MobileNo, (opt) => opt.MapFrom((src) => src.MobileNo))
                    .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailId))
                    .ForMember((dest) => dest.Password, (opt) => opt.MapFrom((src) => src.Password));
 
-            base.CreateMap<CreateCustomerRequetsDTO, CreateCustomerDataServiceCommand>()
+            base.CreateMap<RegisterCustomerRequetsDTO, RegisterCustomerDataServiceCommand>()
                    .ForMember((dest) => dest.FullName, (opt) => opt.MapFrom((src) => src.FullName))
                    .ForMember((dest) => dest.MobileNo, (opt) => opt.MapFrom((src) => src.MobileNo))
                    .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailId))
                    .ForMember((dest) => dest.Password, (opt) => opt.MapFrom((src) => src.Password));
 
-            base.CreateMap<CreateCustomerDataServiceCommand, Customer.API.Infrastructures.DatabaseContext.Customer>()
+            base.CreateMap<RegisterCustomerDataServiceCommand, Customer.API.Infrastructures.DatabaseContext.Customer>()
                 .ForMember((dest) => dest.FullName, (opt) => opt.MapFrom((src) => src.FullName));
 
-            base.CreateMap<CreateCustomerDataServiceCommand, Communication>()
+            base.CreateMap<RegisterCustomerDataServiceCommand, Communication>()
                 .ForMember((dest) => dest.MobileNo, (opt) => opt.MapFrom((src) => src.MobileNo))
                 .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailId));
 
-            base.CreateMap<CreateCustomerDataServiceCommand, Login>()
+            base.CreateMap<RegisterCustomerDataServiceCommand, Login>()
                 .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailId));
 
             base.CreateMap<AddCustomerAddressDataServiceCommand, Address>();

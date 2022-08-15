@@ -1,17 +1,18 @@
 using AuthJwt.Services;
-using Customer.API.Business.Rule;
-using Customer.API.Extensions;
-using Customer.API.Infrastructures.DatabaseContext;
 using Framework.ASP.Extensions.Extensions;
-using Framework.ASP.Middlewares;
-using JwtAuth.Middlewares;
+using Framework.Model.Response;
 using MassTransit;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Wallets.API.Applications.Features.Event.Integration.Consumer;
+using Wallets.API.Extensions;
+
+//using Wallets.API.Applications.Features.Event.Integration.Consumer;
+using Wallets.API.Infrastructure.DatabaseContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddRabbitMQ();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -32,14 +33,11 @@ builder.Services.AddMediatR(typeof(Program));
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddFluentValidationFilter(typeof(Program));
 
-builder.Services.AddDbContext<CustomersContext>((options) =>
+builder.Services.AddDbContext<WalletContext>((options) =>
 {
-    string connectionString = builder.Configuration.GetSecretConnectionString("CustomerDB");
+    string connectionString = builder.Configuration.GetSecretConnectionString("WalletDB");
     options.UseSqlServer(connectionString);
 });
-
-builder.Services.AddScoped<IHashPasswordRule, HashPasswordRule>();
-builder.Services.AddScoped<IJwtGeneratorRule, JwtTokenGeneratorRule>();
 
 var app = builder.Build();
 
@@ -50,16 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseException();
-
-app.UseSecurityHeadersMiddleware();
-
-app.UseJwtToken(); // Use Jwt Token Middleware
-
 app.UseAuthorization();
 
 app.MapControllers();
-
-//app.UseW3CLogging();
 
 app.Run();

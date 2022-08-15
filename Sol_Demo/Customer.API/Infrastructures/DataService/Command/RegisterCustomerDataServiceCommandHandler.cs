@@ -2,14 +2,14 @@
 
 namespace Customer.API.Infrastructures.DataService.Command
 {
-    public class RegisterCustomerDataServiceCommand : CreateCustomerRequetsDTO, IRequest<bool>
+    public class RegisterCustomerDataServiceCommand : RegisterCustomerRequetsDTO, IRequest<Guid?>
     {
         public string? Salt;
 
         public string? Hash;
     }
 
-    public class RegisterCustomerDataServiceCommandHandler : IRequestHandler<RegisterCustomerDataServiceCommand, bool>
+    public class RegisterCustomerDataServiceCommandHandler : IRequestHandler<RegisterCustomerDataServiceCommand, Guid?>
     {
         private readonly CustomersContext customersContext;
         private readonly IMapper mapper;
@@ -20,7 +20,7 @@ namespace Customer.API.Infrastructures.DataService.Command
             this.mapper = mapper;
         }
 
-        async Task<bool> IRequestHandler<RegisterCustomerDataServiceCommand, bool>.Handle(RegisterCustomerDataServiceCommand request, CancellationToken cancellationToken)
+        async Task<Guid?> IRequestHandler<RegisterCustomerDataServiceCommand, Guid?>.Handle(RegisterCustomerDataServiceCommand request, CancellationToken cancellationToken)
         {
             using var transaction = await this.customersContext.Database.BeginTransactionAsync(cancellationToken);
 
@@ -51,7 +51,7 @@ namespace Customer.API.Infrastructures.DataService.Command
 
                 await transaction.CommitAsync(cancellationToken);
 
-                return true;
+                return customer?.CustomerId;
             }
             catch
             {

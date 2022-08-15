@@ -6,20 +6,29 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <UserSecretsId>e9f9c051-3387-47ed-ad69-cdd097de1687</UserSecretsId>
+	<UserSecretsId>e9f9c051-3387-47ed-ad69-cdd097de1687</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
+		<PrivateAssets>all</PrivateAssets>
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
 	<PackageReference Include="MassTransit" Version="8.0.4" />
 	<PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
 	<PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
 	<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Applications\Features\Command\" />
+    <Folder Include="Applications\Features\Query\" />
+    <Folder Include="Business\Validation\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="DTO\Response\" />
+    <Folder Include="Infrastructures\Dataservice\Query\" />
   </ItemGroup>
 
   <ItemGroup>
