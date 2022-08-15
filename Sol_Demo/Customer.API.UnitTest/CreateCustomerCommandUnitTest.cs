@@ -12,7 +12,7 @@ namespace Customer.API.UnitTest
         private readonly Mock<IMediator> mediatorMock = null;
         private readonly Mock<IHashPasswordRule> hashPasswordRuleMock = null;
 
-        private IRequestHandler<CreateCustomerCommand, Results<bool>> createCustomerCommandHandler = null;
+        private IRequestHandler<RegisterCustomerCommand, Results<bool>> createCustomerCommandHandler = null;
 
         public CreateCustomerCommandUnitTest()
         {
@@ -20,10 +20,10 @@ namespace Customer.API.UnitTest
             mediatorMock = new Mock<IMediator>();
             hashPasswordRuleMock = new Mock<IHashPasswordRule>();
 
-            createCustomerCommandHandler = new CreateCustomerCommandHandler(mediatorMock?.Object!, mapperMock?.Object!, hashPasswordRuleMock?.Object!);
+            createCustomerCommandHandler = new RegisterCustomerCommandHandler(mediatorMock?.Object!, mapperMock?.Object!, hashPasswordRuleMock?.Object!);
         }
 
-        private CreateCustomerCommand Data => new CreateCustomerCommand
+        private RegisterCustomerCommand Data => new RegisterCustomerCommand
         {
             FullName = "Kishor Naik",
             EmailId = "kishor@gmail.com",
@@ -39,7 +39,7 @@ namespace Customer.API.UnitTest
                 .ReturnsAsync((salt: "6lM8YGNBzM2bE6UJgdmWZC5bBtk76SBEZvycl63UWzc=", hash: "+ubvJ+FqXWrKYh0Ne0/pk1iXiPsJK0wiUWnPbgjqVnc="));
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<CreateCustomerCommand>()))
+                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
                 .Returns(new CreateCustomerDataServiceCommand());
 
             mediatorMock
@@ -59,7 +59,7 @@ namespace Customer.API.UnitTest
                .Throws<Exception>();
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<CreateCustomerCommand>()))
+                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
                 .Returns(new CreateCustomerDataServiceCommand());
 
             mediatorMock
@@ -83,7 +83,7 @@ namespace Customer.API.UnitTest
                .ReturnsAsync((salt: "6lM8YGNBzM2bE6UJgdmWZC5bBtk76SBEZvycl63UWzc=", hash: "+ubvJ+FqXWrKYh0Ne0/pk1iXiPsJK0wiUWnPbgjqVnc="));
 
             mapperMock
-                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<CreateCustomerCommand>()))
+                .Setup((e) => e.Map<CreateCustomerDataServiceCommand>(It.IsAny<RegisterCustomerCommand>()))
                 .Returns(new CreateCustomerDataServiceCommand());
 
             mediatorMock

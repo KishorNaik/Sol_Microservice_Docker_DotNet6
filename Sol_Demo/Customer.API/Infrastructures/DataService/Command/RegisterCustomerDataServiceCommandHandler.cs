@@ -2,25 +2,25 @@
 
 namespace Customer.API.Infrastructures.DataService.Command
 {
-    public class CreateCustomerDataServiceCommand : CreateCustomerRequetsDTO, IRequest<bool>
+    public class RegisterCustomerDataServiceCommand : CreateCustomerRequetsDTO, IRequest<bool>
     {
         public string? Salt;
 
         public string? Hash;
     }
 
-    public class CreateCustomerDataServiceCommandHandler : IRequestHandler<CreateCustomerDataServiceCommand, bool>
+    public class RegisterCustomerDataServiceCommandHandler : IRequestHandler<RegisterCustomerDataServiceCommand, bool>
     {
         private readonly CustomersContext customersContext;
         private readonly IMapper mapper;
 
-        public CreateCustomerDataServiceCommandHandler(CustomersContext customersContext, IMapper mapper)
+        public RegisterCustomerDataServiceCommandHandler(CustomersContext customersContext, IMapper mapper)
         {
             this.customersContext = customersContext;
             this.mapper = mapper;
         }
 
-        async Task<bool> IRequestHandler<CreateCustomerDataServiceCommand, bool>.Handle(CreateCustomerDataServiceCommand request, CancellationToken cancellationToken)
+        async Task<bool> IRequestHandler<RegisterCustomerDataServiceCommand, bool>.Handle(RegisterCustomerDataServiceCommand request, CancellationToken cancellationToken)
         {
             using var transaction = await this.customersContext.Database.BeginTransactionAsync(cancellationToken);
 

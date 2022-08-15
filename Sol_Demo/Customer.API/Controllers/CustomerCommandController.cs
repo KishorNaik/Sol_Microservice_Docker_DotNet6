@@ -25,7 +25,7 @@ namespace Customer.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequetsDTO createCustomerRequetsDTO)
         {
-            Results<bool> result = await this.mediator.Send<Results<bool>>(this.mapper.Map<CreateCustomerCommand>(createCustomerRequetsDTO));
+            Results<bool> result = await this.mediator.Send<Results<bool>>(this.mapper.Map<RegisterCustomerCommand>(createCustomerRequetsDTO));
 
             return base.StatusCode((int)result.StatusCode!, result);
         }

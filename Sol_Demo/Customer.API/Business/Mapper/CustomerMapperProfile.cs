@@ -12,7 +12,7 @@ namespace Customer.API.Business.Mapper
     {
         public CustomerMapperProfile()
         {
-            base.CreateMap<CreateCustomerRequetsDTO, CreateCustomerCommand>()
+            base.CreateMap<CreateCustomerRequetsDTO, RegisterCustomerCommand>()
                    .ForMember((dest) => dest.FullName, (opt) => opt.MapFrom((src) => src.FullName))
                    .ForMember((dest) => dest.MobileNo, (opt) => opt.MapFrom((src) => src.MobileNo))
                    .ForMember((dest) => dest.EmailId, (opt) => opt.MapFrom((src) => src.EmailId))

@@ -4,24 +4,24 @@ using System.Diagnostics;
 
 namespace Customer.API.Applications.Features.Command
 {
-    public class CreateCustomerCommand : CreateCustomerRequetsDTO, IRequest<Results<bool>>
+    public class RegisterCustomerCommand : CreateCustomerRequetsDTO, IRequest<Results<bool>>
     {
     }
 
-    public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerCommand, Results<bool>>
+    public class RegisterCustomerCommandHandler : IRequestHandler<RegisterCustomerCommand, Results<bool>>
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IHashPasswordRule hashPasswordRule;
 
-        public CreateCustomerCommandHandler(IMediator mediator, IMapper mapper, IHashPasswordRule hashPasswordRule)
+        public RegisterCustomerCommandHandler(IMediator mediator, IMapper mapper, IHashPasswordRule hashPasswordRule)
         {
             this.mediator = mediator;
             this.mapper = mapper;
             this.hashPasswordRule = hashPasswordRule;
         }
 
-        async Task<Results<bool>> IRequestHandler<CreateCustomerCommand, Results<bool>>.Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
+        async Task<Results<bool>> IRequestHandler<RegisterCustomerCommand, Results<bool>>.Handle(RegisterCustomerCommand request, CancellationToken cancellationToken)
         {
             try
             {
